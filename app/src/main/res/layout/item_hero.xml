@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="8dp">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_pahlawan"
+        android:layout_width="200dp"
+        android:layout_height="270dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true">
+        <RelativeLayout
+            android:layout_width="170dp"
+            android:layout_height="240dp">
+
+            <ImageView
+                android:id="@+id/Img_Pahlawan"
+                android:layout_width="100dp"
+                android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/default_img" />
+
+            <TextView
+                android:id="@+id/txt_id_hero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Img_Pahlawan"
+                android:textSize="12sp"
+                android:layout_marginTop="20dp"
+                android:text="ID HERO"
+                android:textAlignment="center"
+                />
+            <TextView
+                android:id="@+id/txt_nama_hero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_id_hero"
+                android:textSize="15sp"
+                android:text="NAME HERO"
+                android:textAlignment="center"
+                />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
