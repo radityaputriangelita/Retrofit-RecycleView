@@ -1,47 +1,38 @@
 package com.example.retrofit
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.retrofit.databinding.ActivityMainBinding
 import com.example.retrofit.model.DataHero
 import com.example.retrofit.model.HeroModel
-import com.example.retrofit.network.ApiService
+import com.example.retrofit.network.ApiClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var heroAdapter: HeroAdapter
-    private lateinit var apiService: ApiService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Inisialisasi RecyclerView dan LayoutManager
-        binding.rvHero.layoutManager = LinearLayoutManager(this)
+        // recycle view nya
+        binding.rvHero.layoutManager = GridLayoutManager(this, 2)
 
         // Inisialisasi adapter
-        heroAdapter = HeroAdapter(emptyList<DataHero>()) { dataHero ->
-            // Lakukan sesuatu ketika item diklik
-            // Di sini Anda dapat mengakses dataHero untuk item yang diklik
-        }
 
+        heroAdapter = HeroAdapter(emptyList<DataHero>()) { dataHero ->}
         binding.rvHero.adapter = heroAdapter
 
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://demo.lazday.com/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+        // get data api nya
+        val apiService = ApiClient.getInstance()
 
-        apiService = retrofit.create(ApiService::class.java)
-
+        //hubungin dari api nya ke objek adaptor
         apiService.getAllHeroes().enqueue(object : Callback<HeroModel> {
             override fun onResponse(call: Call<HeroModel>, response: Response<HeroModel>) {
                 if (response.isSuccessful) {
@@ -51,8 +42,10 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
+            //kalau error
             override fun onFailure(call: Call<HeroModel>, t: Throwable) {
-                // Handle error
+                Toast.makeText(this@MainActivity, "Koneksi error",
+                    Toast.LENGTH_LONG).show()
             }
         })
     }
