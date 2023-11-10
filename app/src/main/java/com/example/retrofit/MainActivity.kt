@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         // Inisialisasi adapter
 
-        heroAdapter = HeroAdapter(emptyList<DataHero>()) { dataHero ->}
+        heroAdapter = HeroAdapter(emptyList<DataHero>())
         binding.rvHero.adapter = heroAdapter
 
         // get data api nya

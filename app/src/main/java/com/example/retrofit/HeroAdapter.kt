@@ -7,7 +7,7 @@ import com.example.retrofit.databinding.ItemHeroBinding
 import com.example.retrofit.model.DataHero
 import com.squareup.picasso.Picasso
 
-class HeroAdapter(private var listSuperHero: List<DataHero>, private val onClickHero: (DataHero) -> Unit) :
+class HeroAdapter(private var listSuperHero: List<DataHero>) :
     RecyclerView.Adapter<HeroAdapter.ItemHeroViewHolder>() {
 
     //tambah buat internet
